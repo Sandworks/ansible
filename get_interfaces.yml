@@ -1,0 +1,16 @@
+---
+- name: get and display interface status
+  hosts: sandbox
+  gather_facts: false
+
+  tasks:
+
+  - name: get interface status
+    cisco.ios.command:
+      commands: show interface status
+    register: output
+
+  - name: display interface status 
+    debug:
+      msg: "{{ output.stdout_lines }}"
+

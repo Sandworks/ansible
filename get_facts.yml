@@ -1,0 +1,14 @@
+---
+- name: gather facts from sandbox
+  hosts: sandbox
+  gather_facts: false
+
+  tasks:
+
+  - name: gather facts
+    cisco.ios.facts:
+    register: output
+
+  - debug:
+      var: output
+
