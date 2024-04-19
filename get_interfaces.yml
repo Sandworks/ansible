@@ -6,7 +6,7 @@
   tasks:
 
   - name: get interface status
-    cisco.ios.command:
+    cisco.ios.ios_command:
       commands: show interface status
     register: output
 

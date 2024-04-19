@@ -6,7 +6,7 @@
   tasks:
 
   - name: gather facts
-    cisco.ios.facts:
+    cisco.ios.ios_facts:
     register: output
 
   - debug:
