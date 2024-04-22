@@ -1,0 +1,9 @@
+---
+- name: gather facts from sandbox
+  hosts: sandbox
+  gather_facts: false
+
+  tasks:
+
+  - name: Example from an Ansible Playbook
+    ansible.builtin.ping:
