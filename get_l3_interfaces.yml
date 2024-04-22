@@ -5,12 +5,11 @@
 
   tasks:
 
-  - name: get interface status
-    ios_command:
-      commands: show interface status
+  - name: get L3 interface status
+    cisco.ios.ios_command:
+      commands: show ip interface brief
     register: output
 
   - name: display interface status 
     debug:
       msg: "{{ output.stdout_lines }}"
-

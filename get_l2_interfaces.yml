@@ -5,7 +5,7 @@
 
   tasks:
 
-  - name: get interface status
+  - name: get L2 interface status
     cisco.ios.ios_command:
       commands: show interface status
     register: output
