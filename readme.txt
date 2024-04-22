@@ -1,3 +1,0 @@
-Readme file
-
-Ansible folder
