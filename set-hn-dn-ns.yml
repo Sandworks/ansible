@@ -1,0 +1,16 @@
+---
+- name: Set host name. domain name, and nameservers for networking devices
+  hosts: network
+  gather_facts: false
+
+  tasks:
+
+  - name: configure IOS devices using Jinja2 template
+    cisco.ios.ios_config:
+      src: j2/ios-hn-dn-ns.j2
+    when: ansible_network_os == 'ios'
+
+  - name: configure VYOS devices using Jinja2 template
+    vyos.vyos.vyos_config:
+      src: j2/vyos-hn-dn-ns.j2
+    when: ansible_network_os == 'vyos'
