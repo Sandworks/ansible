@@ -1,0 +1,31 @@
+---
+- name: show interfaces for all devices
+  hosts: network
+  vars:
+    correct_domain: lab.example.com
+
+  tasks:
+
+  - name: show interfaces for VYOS devices
+    vyos.vyos.vyos_command:
+      commands:
+        - sh conf comm | grep domain-name
+    register: vyos_result
+    when: ansible_network_os == 'vyos'
+
+  - name: assert output
+    ansible.builtin.assert:
+      that: "'{{ correct_domain }}' in vyos_result.stdout[0]"
+    when: ansible_network_os == 'vyos'
+
+  - name: show interfaces for IOS devices
+    cisco.ios.ios_command:
+      commands:
+        - sh run | include domain
+    register: ios_result
+    when: ansible_network_os == 'ios'
+
+  - name: assert output
+    ansible.builtin.assert:
+      that: "'{{ correct_domain }}' in ios_result.stdout[0]"
+    when: ansible_network_os == 'ios'
